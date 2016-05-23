@@ -9,24 +9,23 @@
 import Foundation
 
 class FileItem {
+    
     var url: NSURL!
     var parent: FileItem?
     var isLeaf:Bool = false
+    
     static let fileManager = NSFileManager.defaultManager()
-    //static let requiredAttributes = [NSURLLocalizedNameKey, NSURLEffectiveIconKey,NSURLTypeIdentifierKey,NSURLCreationDateKey,NSURLFileSizeKey, NSURLIsDirectoryKey,NSURLIsPackageKey]
     static let requiredAttributes = [NSURLIsDirectoryKey]
     static let options: NSDirectoryEnumerationOptions = [.SkipsHiddenFiles, .SkipsPackageDescendants, .SkipsSubdirectoryDescendants]
     
     
     lazy var children: [FileItem]? = {
-        if let enumerator = fileManager.enumeratorAtURL(self.url, includingPropertiesForKeys:requiredAttributes, options: options, errorHandler: nil) {
+        if let enumerator = fileManager.enumeratorAtURL(self.url, includingPropertiesForKeys:FileItem.requiredAttributes, options: FileItem.options, errorHandler: nil) {
             
-            var files = [FileItem]() // could be to arrays dirs and files and return dirs + files
-            
+            var files = [FileItem]()
             while let localURL = enumerator.nextObject() as? NSURL {
                 do {
                     let properties = try localURL.resourceValuesForKeys(FileItem.requiredAttributes)
-                    // check this
                     files.append(FileItem(url: localURL, parent: self, isLeaf: (properties[NSURLIsDirectoryKey] as! NSNumber).boolValue))
                 } catch {
                     print("Error reading file attributes")
