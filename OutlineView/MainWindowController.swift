@@ -38,11 +38,7 @@ extension MainWindowController: NSOutlineViewDelegate {
             if let textField = view?.textField {
                 textField.stringValue = it.displayName
             }
-        } else {
-            if let textField = view?.textField {
-                textField.stringValue = self.rootItem!.displayName
-            }
-        }
+        } 
         return view
     }
 }
