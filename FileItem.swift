@@ -14,16 +14,18 @@ class FileItem {
     var parent: FileItem?
     
     static let fileManager = NSFileManager()
-    static let requiredAttributes = [NSURLIsDirectoryKey]
+    static let requiredAttributes = [NSURLIsDirectoryKey] // not using just for example
     static let options: NSDirectoryEnumerationOptions = [.SkipsHiddenFiles, .SkipsPackageDescendants, .SkipsSubdirectoryDescendants]
     
     
     lazy var children: [FileItem]? = {
-        if let enumerator = fileManager.enumeratorAtURL(self.url, includingPropertiesForKeys:FileItem.requiredAttributes, options: FileItem.options, errorHandler: nil) {
+        // empty [String]() don't include any properties, pass nil to get the default properties
+        if let enumerator = fileManager.enumeratorAtURL(self.url, includingPropertiesForKeys:[String](), options: FileItem.options, errorHandler: nil) {
             
             var files = [FileItem]()
             while let localURL = enumerator.nextObject() as? NSURL {
                 do {
+                    // not using properties and if not used catch unnessary
                     let properties = try localURL.resourceValuesForKeys(FileItem.requiredAttributes)
                     files.append(FileItem(url: localURL, parent: self))
                     
