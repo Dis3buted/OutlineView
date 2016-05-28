@@ -14,7 +14,7 @@ class FileItem {
     var parent: FileItem?
     var isLeaf:Bool = false
     
-    static let fileManager = NSFileManager.defaultManager()
+    static let fileManager = NSFileManager()//.defaultManager()
     static let requiredAttributes = [NSURLIsDirectoryKey]
     static let options: NSDirectoryEnumerationOptions = [.SkipsHiddenFiles, .SkipsPackageDescendants, .SkipsSubdirectoryDescendants]
     
@@ -27,6 +27,7 @@ class FileItem {
                 do {
                     let properties = try localURL.resourceValuesForKeys(FileItem.requiredAttributes)
                     files.append(FileItem(url: localURL, parent: self, isLeaf: (properties[NSURLIsDirectoryKey] as! NSNumber).boolValue))
+                    
                 } catch {
                     print("Error reading file attributes")
                 }

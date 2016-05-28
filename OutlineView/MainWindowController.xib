@@ -18,17 +18,17 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="258" height="363"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-            <view key="contentView" id="se5-gp-TjO">
+            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="258" height="363"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ8-vx-sVc">
+                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJ8-vx-sVc">
                         <rect key="frame" x="0.0" y="0.0" width="258" height="363"/>
-                        <clipView key="contentView" drawsBackground="NO" id="nmb-7F-S9f">
+                        <clipView key="contentView" wantsLayer="YES" drawsBackground="NO" id="nmb-7F-S9f">
                             <rect key="frame" x="0.0" y="0.0" width="258" height="363"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="automatic" headerView="WtW-mD-2Gs" viewBased="YES" indentationPerLevel="14" outlineTableColumn="3z9-7B-GUC" id="HaB-ti-H0D">
+                                <outlineView wantsLayer="YES" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="automatic" headerView="WtW-mD-2Gs" viewBased="YES" indentationPerLevel="14" outlineTableColumn="3z9-7B-GUC" id="HaB-ti-H0D">
                                     <rect key="frame" x="0.0" y="0.0" width="258" height="340"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="0.0"/>
