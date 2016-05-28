@@ -11,11 +11,10 @@ import Cocoa
 class MainWindowController: NSWindowController {
     
     @IBOutlet weak var outline: NSOutlineView!
-    private var rootItem: FileItem? = FileItem(url: NSURL(fileURLWithPath:"/"), parent: nil, isLeaf: true)
+    private var rootItem: FileItem? = FileItem(url: NSURL(fileURLWithPath:"/"), parent: nil)
 
     override func windowDidLoad() {
         super.windowDidLoad()
-
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
     
