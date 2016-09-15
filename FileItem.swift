@@ -10,23 +10,23 @@ import Foundation
 
 class FileItem {
     
-    var url: NSURL!
+    var url: URL!
     var parent: FileItem?
     
-    static let fileManager = NSFileManager()
-    static let requiredAttributes = [NSURLIsDirectoryKey] // not using just for example
-    static let options: NSDirectoryEnumerationOptions = [.SkipsHiddenFiles, .SkipsPackageDescendants, .SkipsSubdirectoryDescendants]
+    static let fileManager = FileManager()
+    static let requiredAttributes = [URLResourceKey.isDirectoryKey] // not using just for example
+    static let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants, .skipsSubdirectoryDescendants]
     
     
     lazy var children: [FileItem]? = {
         // empty [String]() don't include any properties, pass nil to get the default properties
-        if let enumerator = fileManager.enumeratorAtURL(self.url, includingPropertiesForKeys:[String](), options: FileItem.options, errorHandler: nil) {
+        if let enumerator = fileManager.enumerator(at: self.url, includingPropertiesForKeys:[String](), options: FileItem.options, errorHandler: nil) {
             
             var files = [FileItem]()
-            while let localURL = enumerator.nextObject() as? NSURL {
+            while let localURL = enumerator.nextObject() as? URL {
                 do {
                     // not using properties and if not used catch unnessary
-                    let properties = try localURL.resourceValuesForKeys(FileItem.requiredAttributes)
+                    let properties = try (localURL as NSURL).resourceValues(forKeys: FileItem.requiredAttributes)
                     files.append(FileItem(url: localURL, parent: self))
                     
                 } catch {
@@ -38,14 +38,14 @@ class FileItem {
         return nil
     }()
    
-    init(url:NSURL, parent: FileItem?){
+    init(url:URL, parent: FileItem?){
         self.url = url
         self.parent = parent
     }
     
     var displayName: String {
         get {
-            return self.url.lastPathComponent!
+            return self.url.lastPathComponent
         }
     }
     
@@ -53,7 +53,7 @@ class FileItem {
         return (self.children?.count)!
     }
     
-    func childAtIndex(n: Int) -> FileItem? {
+    func childAtIndex(_ n: Int) -> FileItem? {
         return self.children![n]
     }
 }
