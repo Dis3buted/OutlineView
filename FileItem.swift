@@ -19,8 +19,8 @@ class FileItem {
     
     
     lazy var children: [FileItem]? = {
-        // empty [String]() don't include any properties, pass nil to get the default properties
-        if let enumerator = fileManager.enumerator(at: self.url, includingPropertiesForKeys:[String](), options: FileItem.options, errorHandler: nil) {
+        // empty [URLResourceKey]() don't include any properties, pass nil to get the default properties
+        if let enumerator = fileManager.enumerator(at: self.url, includingPropertiesForKeys:[URLResourceKey](), options: FileItem.options, errorHandler: nil) {
             
             var files = [FileItem]()
             while let localURL = enumerator.nextObject() as? URL {
