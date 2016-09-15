@@ -11,7 +11,7 @@ import Cocoa
 class MainWindowController: NSWindowController {
     
     @IBOutlet weak var outline: NSOutlineView!
-    private var rootItem: FileItem? = FileItem(url: NSURL(fileURLWithPath:"/"), parent: nil)
+    fileprivate var rootItem: FileItem? = FileItem(url: URL(fileURLWithPath:"/"), parent: nil)
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -25,15 +25,15 @@ class MainWindowController: NSWindowController {
 
 //MARK: - NSOutlineViewDelegate
 extension MainWindowController: NSOutlineViewDelegate {
-    func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let it = item as? FileItem {
             return it.childAtIndex(index)!
         }
         return rootItem!
     }
     
-    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
-        let view = outline.makeViewWithIdentifier("TextCell", owner: self) as? NSTableCellView
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        let view = outline.make(withIdentifier: "TextCell", owner: self) as? NSTableCellView
         if let it = item as? FileItem {
             if let textField = view?.textField {
                 textField.stringValue = it.displayName
@@ -45,13 +45,13 @@ extension MainWindowController: NSOutlineViewDelegate {
 
 //MARK: - NSOutlineViewDataSource
 extension MainWindowController: NSOutlineViewDataSource {
-    func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if let it = item as? FileItem {
             return it.count
         }
         return 1
     }
-    func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         if let it = item as? FileItem {
             if it.count > 0 {
                 return true
