@@ -14,7 +14,7 @@ class FileItem {
     var parent: FileItem?
     
     static let fileManager = FileManager()
-    static let requiredAttributes = [URLResourceKey.isDirectoryKey] // not using just for example
+    static let requiredAttributes: Set = [URLResourceKey.isDirectoryKey] // not using just for example
     static let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsPackageDescendants, .skipsSubdirectoryDescendants]
     
     
@@ -26,7 +26,8 @@ class FileItem {
             while let localURL = enumerator.nextObject() as? URL {
                 do {
                     // not using properties and if not used catch unnessary
-                    let properties = try (localURL as NSURL).resourceValues(forKeys: FileItem.requiredAttributes)
+                    //let properties = try (localURL as NSURL).resourceValues(forKeys: FileItem.requiredAttributes)
+                    let properties = try localURL.resourceValues(forKeys: FileItem.requiredAttributes)
                     files.append(FileItem(url: localURL, parent: self))
                     
                 } catch {
