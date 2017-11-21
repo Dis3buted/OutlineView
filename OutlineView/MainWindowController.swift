@@ -17,7 +17,13 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
-    
+    //For Swift 4 use 
+    /*
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name.init("MainWindowController")
+    }
+    */
+    // and remove this
     override var windowNibName: String? {
         return "MainWindowController"
     }
