@@ -32,6 +32,8 @@ class MainWindowController: NSWindowController {
 //MARK: - NSOutlineViewDelegate
 extension MainWindowController: NSOutlineViewDelegate {
   func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+      // If errors try with
+      // let view = outlineView.make(withIdentifier: "TextCell", owner: self) as? NSTableCellView
         let view = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TextCell"), owner: self) as? NSTableCellView
         if let it = item as? FileItem {
             if let textField = view?.textField {
